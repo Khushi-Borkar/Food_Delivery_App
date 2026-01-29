@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zwiggy - Premium Food Delivery</title>
+    <meta name="description"
+        content="Discover the best food from over 1,000 restaurants with fast delivery to your doorstep.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Zwiggy<span>.</span></a>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#offers">Offers</a>
+                <a href="#features">Why Us</a>
+                <a href="#footer">Contact</a>
+                <a href="#" class="btn btn-primary" style="padding: 8px 20px; font-size: 1rem;"
+                    onclick="openSignIn(event)">Sign In</a>
+            </nav>
+            <!-- Mobile Menu -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-video-container">
+            <video autoplay muted loop playsinline id="bg-video" class="hero-video"
+                poster="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80">
+                <source src="https://videos.pexels.com/video-files/3298572/3298572-uhd_2560_1440_30fps.mp4"
+                    type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">🎉 Get 50% OFF on your first order!</div>
+            <h1 class="hero-title">Delicious Food,<br><span>Delivered To You.</span></h1>
+            <p class="hero-subtitle">Discover the best food from over 1,000 restaurants and fast delivery to your
+                doorstep across India.</p>
+            <div class="hero-search-box">
+                <i class="fas fa-map-marker-alt"></i>
+                <input type="text" placeholder="Enter your delivery location...">
+                <button class="search-btn" onclick="validateLandingSearch()">
+                    <i class="fas fa-search"></i> Find Food
+                </button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">1000+</span>
+                    <span class="stat-label">Restaurants</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">500K+</span>
+                    <span class="stat-label">Happy Customers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Cities</span>
+                </div>
+            </div>
+        </div>
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Promotional Banners -->
+    <section class="promo-banners" id="offers">
+        <div class="container">
+            <div class="promo-slider">
+                <div class="promo-card gradient-1">
+                    <div class="promo-content">
+                        <span class="promo-tag">LIMITED TIME</span>
+                        <h3>50% OFF</h3>
+                        <p>On your first order</p>
+                        <span class="promo-code">Use code: FIRST50</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60"
+                        alt="Pizza Offer">
+                </div>
+                <div class="promo-card gradient-2">
+                    <div class="promo-content">
+                        <span class="promo-tag">WEEKEND SPECIAL</span>
+                        <h3>Free Delivery</h3>
+                        <p>On orders above ₹299</p>
+                        <span class="promo-code">Use code: FREEWEEK</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60"
+                        alt="Burger Offer">
+                </div>
+                <div class="promo-card gradient-3">
+                    <div class="promo-content">
+                        <span class="promo-tag">DAILY DEALS</span>
+                        <h3>₹100 Cashback</h3>
+                        <p>Pay with Zwiggy Wallet</p>
+                        <span class="promo-code">Auto-applied</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60"
+                        alt="Dessert Offer">
+                </div>
+                <div class="promo-card gradient-4">
+                    <div class="promo-content">
+                        <span class="promo-tag">FESTIVE OFFER</span>
+                        <h3>Buy 1 Get 1</h3>
+                        <p>On selected items</p>
+                        <span class="promo-code">Use code: BOGO</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60"
+                        alt="Healthy Food Offer">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2 class="section-title">What's on your mind?</h2>
+            <p class="section-subtitle">Explore our popular cuisines</p>
+            <div class="category-grid">
+                <div class="category-card" onclick="window.location.href='order.html'">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                        alt="Pizza">
+                    <div class="category-overlay">
+                        <h3 class="category-name">Pizza</h3>
+                        <span class="category-count">45 restaurants</span>
+                    </div>
+                </div>
+                <div class="category-card" onclick="window.location.href='order.html'">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                        alt="Burgers">
+                    <div class="category-overlay">
+                        <h3 class="category-name">Burgers</h3>
+                        <span class="category-count">38 restaurants</span>
+                    </div>
+                </div>
+                <div class="category-card" onclick="window.location.href='order.html'">
+                    <img src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                        alt="Indian">
+                    <div class="category-overlay">
+                        <h3 class="category-name">Indian</h3>
+                        <span class="category-count">120 restaurants</span>
+                    </div>
+                </div>
+                <div class="category-card" onclick="window.location.href='order.html'">
+                    <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                        alt="Japanese">
+                    <div class="category-overlay">
+                        <h3 class="category-name">Japanese</h3>
+                        <span class="category-count">22 restaurants</span>
+                    </div>
+                </div>
+                <div class="category-card" onclick="window.location.href='order.html'">
+                    <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                        alt="Chinese">
+                    <div class="category-overlay">
+                        <h3 class="category-name">Chinese</h3>
+                        <span class="category-count">65 restaurants</span>
+                    </div>
+                </div>
+                <div class="category-card" onclick="window.location.href='order.html'">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                        alt="Healthy">
+                    <div class="category-overlay">
+                        <h3 class="category-name">Healthy</h3>
+                        <span class="category-count">28 restaurants</span>
+                    </div>
+                </div>
+            </div>
+            <div class="category-cta">
+                <a href="order.html" class="btn btn-primary">
+                    View All Restaurants <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Restaurants Section -->
+    <section class="popular-restaurants">
+        <div class="container">
+            <h2 class="section-title">Popular Restaurants</h2>
+            <p class="section-subtitle">Top picks in your area</p>
+            <div class="restaurant-scroll" id="popular-restaurants">
+                <!-- Will be populated by JS -->
+            </div>
+            <div class="category-cta">
+                <a href="order.html" class="btn btn-primary">
+                    View All Restaurants <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Zwiggy?</h2>
+            <p class="section-subtitle">The best food delivery experience</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast Delivery</h3>
+                    <p>Get your food delivered in under 30 minutes with our express delivery network.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Safe & Hygienic</h3>
+                    <p>All our delivery partners follow strict hygiene protocols for your safety.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3>Best Offers</h3>
+                    <p>Enjoy exclusive discounts and cashback on every order you place.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Our customer support team is always ready to help you anytime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Download Section -->
+    <section class="app-download">
+        <div class="container">
+            <div class="app-content">
+                <div class="app-text">
+                    <h2>Get the Zwiggy App</h2>
+                    <p>Download the app and enjoy exclusive offers, track your orders in real-time, and get personalized
+                        recommendations.</p>
+                    <div class="app-features">
+                        <div class="app-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Exclusive app-only offers</span>
+                        </div>
+                        <div class="app-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Real-time order tracking</span>
+                        </div>
+                        <div class="app-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Quick reorder feature</span>
+                        </div>
+                    </div>
+                    <div class="app-buttons">
+                        <a href="#" class="app-store-btn">
+                            <i class="fab fa-apple"></i>
+                            <div>
+                                <span>Download on the</span>
+                                <strong>App Store</strong>
+                            </div>
+                        </a>
+                        <a href="#" class="app-store-btn">
+                            <i class="fab fa-google-play"></i>
+                            <div>
+                                <span>Get it on</span>
+                                <strong>Google Play</strong>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="app-mockup">
+                    <div class="phone-mockup">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60"
+                            alt="Zwiggy App">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle">Real reviews from real food lovers</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Customer">
+                        <div>
+                            <h4>Priya Sharma</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Amazing food delivery service! The food always arrives hot and fresh. Love the variety of
+                        restaurants available."</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer">
+                        <div>
+                            <h4>Rahul Kumar</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Super fast delivery and great customer service. The app is very easy to use and I love the
+                        tracking feature!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer">
+                        <div>
+                            <h4>Anjali Patel</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Best food delivery app in India! Great offers and discounts. Highly recommended for all food
+                        lovers."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cities Section -->
+    <section class="cities-section">
+        <div class="container">
+            <h2 class="section-title">We Deliver Across India</h2>
+            <p class="section-subtitle">Available in 50+ cities</p>
+            <div class="cities-grid">
+                <div class="city-tag">Mumbai</div>
+                <div class="city-tag">Delhi</div>
+                <div class="city-tag">Bangalore</div>
+                <div class="city-tag">Hyderabad</div>
+                <div class="city-tag">Chennai</div>
+                <div class="city-tag">Kolkata</div>
+                <div class="city-tag">Pune</div>
+                <div class="city-tag">Ahmedabad</div>
+                <div class="city-tag">Jaipur</div>
+                <div class="city-tag">Lucknow</div>
+                <div class="city-tag">+40 more</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">Zwiggy<span>.</span></a>
+                    <p>India's favorite food delivery app. We deliver happiness to your doorstep.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>For You</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Partner with Us</a></li>
+                        <li><a href="#">Ride with Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help & FAQs</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Report Issue</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123, Tech Park, Bengaluru, Karnataka 560001</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+91 1800-123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>support@zwiggy.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Zwiggy. All Rights Reserved.</p>
+                <div class="payment-methods">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/200px-Visa_Inc._logo.svg.png"
+                        alt="Visa">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/200px-Mastercard-logo.svg.png"
+                        alt="Mastercard">
+                    <i class="fab fa-cc-paypal" style="font-size: 2rem; color: #003087;"></i>
+                    <i class="fab fa-google-pay" style="font-size: 2rem;"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sign In Modal -->
+    <div id="signin-modal" class="modal-overlay">
+        <div class="signin-modal-content">
+            <button class="modal-close" onclick="closeSignIn()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="signin-header">
+                <h2>Welcome Back!</h2>
+                <p>Sign in to order your favorite food</p>
+            </div>
+            <form id="signin-form" onsubmit="handleSignIn(event)">
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="remember"> Remember me
+                    </label>
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary signin-btn">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+            </form>
+            <div class="signin-footer">
+                <p>Don't have an account? <a href="#" onclick="showSignUp(event)">Sign Up</a></p>
+                <div class="social-login">
+                    <p>Or continue with</p>
+                    <div class="social-buttons">
+                        <button class="social-btn google"><i class="fab fa-google"></i></button>
+                        <button class="social-btn facebook"><i class="fab fa-facebook-f"></i></button>
+                        <button class="social-btn apple"><i class="fab fa-apple"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
+    <script>
+        // Populate popular restaurants
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('popular-restaurants');
+            if (container && typeof restaurants !== 'undefined') {
+                const topRated = [...restaurants].sort((a, b) => b.rating - a.rating).slice(0, 6);
+                container.innerHTML = topRated.map(rest => `
+                    <div class="restaurant-scroll-card" onclick="window.location.href='restaurant.html?id=${rest.id}'">
+                        <div class="scroll-card-image">
+                            <img src="${rest.image}" alt="${rest.name}">
+                            <span class="scroll-card-offer">50% OFF</span>
+                        </div>
+                        <div class="scroll-card-info">
+                            <h4>${rest.name}</h4>
+                            <p>${rest.cuisine}</p>
+                            <div class="scroll-card-meta">
+                                <span class="rating"><i class="fas fa-star"></i> ${rest.rating}</span>
+                                <span class="time">${rest.time}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>

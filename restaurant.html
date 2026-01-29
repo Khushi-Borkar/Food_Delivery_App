@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu - Zwiggy</title>
+    <meta name="description" content="Order delicious food from your favorite restaurant.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="restaurant-page-header">
+        <div class="container header-content">
+            <div class="header-left">
+                <a href="order.html" class="back-btn" title="Back to Restaurants">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back</span>
+                </a>
+                <a href="index.html" class="logo">Zwiggy<span>.</span></a>
+            </div>
+            <div class="header-right">
+                <div class="location-display">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Mumbai, India</span>
+                </div>
+                <div class="cart-icon-container" onclick="toggleCart()">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span id="cart-count" class="cart-badge">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Restaurant Hero Banner -->
+    <section class="restaurant-hero" id="restaurant-hero">
+        <div class="restaurant-hero-overlay"></div>
+        <div class="container restaurant-hero-content">
+            <div class="restaurant-info-card">
+                <h1 id="restaurant-name">Loading...</h1>
+                <div class="restaurant-meta">
+                    <span class="restaurant-cuisine" id="restaurant-cuisine"></span>
+                    <span class="restaurant-location"><i class="fas fa-map-marker-alt"></i> Mumbai</span>
+                </div>
+                <div class="restaurant-stats">
+                    <div class="stat">
+                        <span class="stat-value" id="restaurant-rating"><i class="fas fa-star"></i> --</span>
+                        <span class="stat-label">Rating</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="restaurant-time"><i class="fas fa-clock"></i> --</span>
+                        <span class="stat-label">Delivery</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="restaurant-price">₹--</span>
+                        <span class="stat-label">For Two</span>
+                    </div>
+                </div>
+                <div class="restaurant-offers">
+                    <div class="offer-tag"><i class="fas fa-percent"></i> 50% off up to ₹100</div>
+                    <div class="offer-tag"><i class="fas fa-truck"></i> Free delivery</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section">
+        <div class="container">
+            <div class="menu-layout">
+                <!-- Menu Categories Sidebar -->
+                <aside class="menu-categories">
+                    <h3>Menu</h3>
+                    <ul id="category-list">
+                        <li class="active" data-category="all">
+                            <span>All Items</span>
+                            <span class="count" id="all-count">0</span>
+                        </li>
+                        <li data-category="recommended">
+                            <span><i class="fas fa-thumbs-up"></i> Recommended</span>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- Menu Items -->
+                <main class="menu-items-section">
+                    <div class="menu-header">
+                        <h2>Menu Items</h2>
+                        <div class="menu-search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search in menu..." id="menu-search"
+                                oninput="searchMenu(this.value)">
+                        </div>
+                    </div>
+
+                    <div id="menu-items-container" class="menu-items-grid">
+                        <!-- Items will be loaded here -->
+                        <div class="loading-spinner">
+                            <div class="spinner"></div>
+                            <p>Loading menu...</p>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-bag"></i> Your Cart</h2>
+            <button onclick="toggleCart()" class="cart-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div id="cart-items" class="cart-items">
+            <div class="cart-empty">
+                <i class="fas fa-shopping-basket"></i>
+                <p>Your cart is empty</p>
+                <span>Add items to get started</span>
+            </div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Subtotal</span>
+                <span id="cart-total">₹0.00</span>
+            </div>
+            <div class="cart-total-row delivery">
+                <span>Delivery Fee</span>
+                <span>₹40.00</span>
+            </div>
+            <div class="cart-total-row grand-total">
+                <span>Total</span>
+                <span id="cart-grand-total">₹40.00</span>
+            </div>
+            <button class="btn btn-primary checkout-btn" onclick="checkout()">
+                <i class="fas fa-credit-card"></i> Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
+    <script>
+        // Load restaurant on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadRestaurantPage();
+        });
+    </script>
+</body>
+
+</html>

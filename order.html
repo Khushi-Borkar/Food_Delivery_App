@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Food - Zwiggy</title>
+    <meta name="description" content="Order delicious food from the best restaurants near you.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="order-header">
+        <div class="container header-content">
+            <div class="header-left">
+                <a href="index.html" class="back-home-btn" title="Back to Home">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Home</span>
+                </a>
+                <a href="index.html" class="logo">Zwiggy<span>.</span></a>
+            </div>
+            <div class="header-center">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Search restaurants or cuisines..."
+                        oninput="handleSearch(this.value)">
+                    <button class="search-clear" onclick="clearSearch()" title="Clear search">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="nav-links header-right">
+                <div class="location-display">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Mumbai, India</span>
+                </div>
+                <div class="cart-icon-container" onclick="toggleCart()">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span id="cart-count" class="cart-badge">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="order-container">
+        <!-- Filters Sidebar -->
+        <aside class="filters-sidebar" id="filters-sidebar">
+            <div class="filters-header">
+                <h3><i class="fas fa-filter"></i> Filters</h3>
+                <button class="reset-filters" onclick="resetFilters()">Reset All</button>
+            </div>
+
+            <!-- Sort By -->
+            <div class="filter-section">
+                <h4>Sort By</h4>
+                <div class="filter-options">
+                    <label class="filter-radio">
+                        <input type="radio" name="sort" value="default" checked onchange="applyFilters()">
+                        <span class="radio-custom"></span>
+                        Relevance
+                    </label>
+                    <label class="filter-radio">
+                        <input type="radio" name="sort" value="rating" onchange="applyFilters()">
+                        <span class="radio-custom"></span>
+                        Rating: High to Low
+                    </label>
+                    <label class="filter-radio">
+                        <input type="radio" name="sort" value="price-low" onchange="applyFilters()">
+                        <span class="radio-custom"></span>
+                        Price: Low to High
+                    </label>
+                    <label class="filter-radio">
+                        <input type="radio" name="sort" value="price-high" onchange="applyFilters()">
+                        <span class="radio-custom"></span>
+                        Price: High to Low
+                    </label>
+                    <label class="filter-radio">
+                        <input type="radio" name="sort" value="time" onchange="applyFilters()">
+                        <span class="radio-custom"></span>
+                        Delivery Time
+                    </label>
+                </div>
+            </div>
+
+            <!-- Rating Filter -->
+            <div class="filter-section">
+                <h4>Rating</h4>
+                <div class="filter-options">
+                    <label class="filter-checkbox">
+                        <input type="checkbox" value="4.5" onchange="applyFilters()" class="rating-filter">
+                        <span class="checkbox-custom"></span>
+                        <span class="rating-label"><i class="fas fa-star"></i> 4.5 & above</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" value="4.0" onchange="applyFilters()" class="rating-filter">
+                        <span class="checkbox-custom"></span>
+                        <span class="rating-label"><i class="fas fa-star"></i> 4.0 & above</span>
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" value="3.5" onchange="applyFilters()" class="rating-filter">
+                        <span class="checkbox-custom"></span>
+                        <span class="rating-label"><i class="fas fa-star"></i> 3.5 & above</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Cuisine Filter -->
+            <div class="filter-section">
+                <h4>Cuisines</h4>
+                <div class="filter-options cuisine-filters" id="cuisine-filters">
+                    <!-- Will be populated by JS -->
+                </div>
+            </div>
+
+            <!-- Delivery Time Filter -->
+            <div class="filter-section">
+                <h4>Delivery Time</h4>
+                <div class="filter-options">
+                    <label class="filter-checkbox">
+                        <input type="checkbox" value="30" onchange="applyFilters()" class="time-filter">
+                        <span class="checkbox-custom"></span>
+                        Under 30 mins
+                    </label>
+                    <label class="filter-checkbox">
+                        <input type="checkbox" value="45" onchange="applyFilters()" class="time-filter">
+                        <span class="checkbox-custom"></span>
+                        Under 45 mins
+                    </label>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Mobile Filter Button -->
+        <button class="mobile-filter-btn" onclick="toggleFilters()">
+            <i class="fas fa-filter"></i> Filters
+        </button>
+
+        <!-- Restaurant Grid -->
+        <main class="restaurant-main">
+            <div class="restaurant-header">
+                <h2><span id="restaurant-count">10</span> Restaurants delivering to you</h2>
+                <div class="view-toggle">
+                    <button class="view-btn active" onclick="setView('grid')" title="Grid View">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                    <button class="view-btn" onclick="setView('list')" title="List View">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="restaurant-list" class="restaurant-grid">
+                <!-- Restaurants will be injected here by JS -->
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>Finding the best restaurants for you...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-bag"></i> Your Cart</h2>
+            <button onclick="toggleCart()" class="cart-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div id="cart-items" class="cart-items">
+            <!-- Cart Items injected here -->
+            <div class="cart-empty">
+                <i class="fas fa-shopping-basket"></i>
+                <p>Your cart is empty</p>
+                <span>Add items to get started</span>
+            </div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Subtotal</span>
+                <span id="cart-total">₹0.00</span>
+            </div>
+            <div class="cart-total-row delivery">
+                <span>Delivery Fee</span>
+                <span>₹40.00</span>
+            </div>
+            <div class="cart-total-row grand-total">
+                <span>Total</span>
+                <span id="cart-grand-total">₹40.00</span>
+            </div>
+            <button class="btn btn-primary checkout-btn" onclick="checkout()">
+                <i class="fas fa-credit-card"></i> Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
+
+    <!-- Menu Modal -->
+    <div id="menu-modal" class="menu-modal">
+        <div class="menu-modal-content">
+            <div class="menu-modal-header">
+                <div class="modal-restaurant-info">
+                    <h2 id="modal-restaurant-name">Restaurant Name</h2>
+                    <p id="modal-restaurant-details"></p>
+                </div>
+                <button onclick="closeMenu()" class="modal-close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="modal-menu-items" class="menu-items-container">
+                <!-- Menu Items injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
